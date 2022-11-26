@@ -2,10 +2,24 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import Button from "./components/Button";
 import ImageViewer from "./components/ImageViewer";
+import * as ImagePicker from "expo-image-picker";
 
 const PlaceHolderImage = require("./assets/background-image.png");
 
 export default function App() {
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true, // 画像選択後トリミングが可能になる
+      quality: 1, // 画像選択後の圧縮サイズが変わる
+    });
+
+    if (!result.canceled) {
+      console.log(result);
+    } else {
+      alert("You did not select any image.");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
