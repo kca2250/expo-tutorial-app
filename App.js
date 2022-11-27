@@ -33,17 +33,24 @@ export default function App() {
           selectedImage={selectedImage}
         />
       </View>
-      <View style={styles.footerContainer}>
-        <Button
-          theme="primary"
-          label="Choose a photo"
-          onPress={pickImageAsync}
-        />
-        <Button
-          label="Use this photo"
-          onPress={() => setShowAppOptions(true)}
-        />
-      </View>
+
+      {/* 'showAppOptions === true'時には何も表示されない */}
+      {showAppOptions ? (
+        <View />
+      ) : (
+        <View style={styles.footerContainer}>
+          <Button
+            theme="primary"
+            label="Choose a photo"
+            onPress={pickImageAsync}
+          />
+          <Button
+            label="Use this photo"
+            onPress={() => setShowAppOptions(true)}
+          />
+        </View>
+      )}
+
       <StatusBar style="auto" />
     </View>
   );
